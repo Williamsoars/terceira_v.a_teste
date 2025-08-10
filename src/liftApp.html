@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lift Simulation</title>
+</head>
+<body>
+  <h1>Lift Simulation</h1>
+  <p id="status"></p>
+  <input id="riders" type="number" placeholder="Passengers" />
+  <button id="addRiders">Add Riders</button>
+  <button id="goUp">Up</button>
+  <button id="goDown">Down</button>
+  <input id="callFloor" type="number" placeholder="Call to floor" />
+  <button id="callBtn">Call</button>
+
+  <script src="lift.js"></script>
+  <script>
+    function updateStatus() {
+      document.getElementById("status").innerText =
+        `Floor: ${window.lift.currentFloor} | Riders: ${window.lift.numRiders}`;
+    }
+
+    document.getElementById("addRiders").onclick = () => {
+      const n = parseInt(document.getElementById("riders").value) || 0;
+      window.lift.addRiders(n);
+      updateStatus();
+    };
+
+    document.getElementById("goUp").onclick = () => {
+      window.lift.goUp();
+      updateStatus();
+    };
+
+    document.getElementById("goDown").onclick = () => {
+      window.lift.goDown();
+      updateStatus();
+    };
+
+    document.getElementById("callBtn").onclick = () => {
+      const f = parseInt(document.getElementById("callFloor").value) || 0;
+      window.lift.call(f);
+      updateStatus();
+    };
+
+    updateStatus();
+  </script>
+</body>
+</html>
